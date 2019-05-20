@@ -1,15 +1,15 @@
 const knex = require('knex')
 
+const config = require('../knexfile.js')
 const db = knex(config.development)
 
-const config = require('../../knexfile.js')
 
 const mappers = require('./mappers.js')
 
 module.exports = {
     add,
-    update,
-    delete,
+    // update,
+    // delete,
     findById,
     getParties
 }
@@ -29,10 +29,10 @@ async function add(party) {
 }
 
 function findById(id) {
-    let query = db('projects as p');
+    let query = db('party');
 
   if (id) {
-    query.where('p.id', id).first();
+    query.where('party.id', id).first();
 
     const promises = [query, this.getProjectActions(id)]; // [ projects, actions ]
 
@@ -53,5 +53,5 @@ function findById(id) {
 function findById(id) {
     return db('party')
         .where('party_id', partyId)
-        .then(parties => parties.map(party => mappers.))
+        .then(parties => parties.map(party => mappers.actionToBody(party)))
 }

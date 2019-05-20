@@ -1,7 +1,7 @@
 module.exports = {
     intToBoolean,
     booleanToint,
-    projectToBody,
+    partyToBody,
     actionToBody,
   };
   
@@ -36,7 +36,7 @@ module.exports = {
     return result;
   }
   
-  function shopping_listToBody(shopping_list) {
+  function actionToBody(shopping_list) {
     return {
       ...shopping_list,
       purchased: intToBoolean(shopping_list.purchased),
@@ -44,7 +44,7 @@ module.exports = {
   }
   
 
-  function todo_listToBody(todo_list) {
+  function projectToBody(todo_list) {
     return {
       ...todo_list,
       completed: intToBoolean(todo_list.completed),

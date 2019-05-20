@@ -30,8 +30,9 @@ exports.up = function(knex, Promise) {
                     .string('password', 128)
                     .notNullable()
     
-        
-    
+                tbl
+                    .foreign('party_id')
+                    .references('party.id')
             })
     
     

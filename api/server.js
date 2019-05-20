@@ -19,7 +19,7 @@ server.get('/', (req, res) => {
     res.send(`Server's working!`)
 })
 
+server.use('/api', partyRouter)
 server.use('/api/auth', authRouter)
-server.use('/api/auth', partyRouter)
 
 module.exports = server;
