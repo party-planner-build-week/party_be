@@ -8,7 +8,7 @@ const knex = require('knex')
 const config = require('../knexfile.js')
 const db = knex(config.development)
 
-router.post('/', async (req, res) => {
+router.post('/parties', async (req, res) => {
     try {
         const parties = await Parties.add(req.body)
         res.status(200).json(parties)
@@ -44,5 +44,30 @@ router.get('/parties/:id', async (req, res) => {
         })
     }
 })
+
+
+router.put('/parties/:id/', async (req, res) => {
+    try {
+
+            const party = await Parties.update(req.params.id, req.body)
+            if (party) {
+                res.status(200).json(party)
+
+            } else {
+                res.status(404).json({
+                    message: `Couldn't find that party.`
+                })
+
+            }
+
+        
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({
+            message: "Error updating the party"
+        })
+    }
+})
+
 
 module.exports = router;

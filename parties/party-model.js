@@ -4,11 +4,11 @@ const config = require('../knexfile.js')
 const db = knex(config.development)
 
 
-const mappers = require('./mappers.js')
+
 
 module.exports = {
     add,
-    // update,
+    update,
     // delete,
     findById,
     getParties
@@ -28,30 +28,23 @@ async function add(party) {
     return findById(id)
 }
 
+function update(id, changes) {
+  console.log(changes)
+  return db('party')
+    .where({ id })
+    .update(changes)
+}
+
 async function findById(id) {
     let query = await db('party').where({id}).first();
 
     let shopQuery = await db('shopping_list').where({ party_id: id })
 
     let todoQuery = await db('todo_list').where({ party_id: id })
+
+    
    return { ...query, todo: todoQuery, shopping_list: shopQuery }
-//   if (id) {
-//     query.where('party_id', id).first();
 
-//     const promises = [query, this.getPartyShopList(id)]; 
-
-//     return Promise.all(promises).then(function(results) {
-//       let [party, shopping_list] = results;
-
-//       if (party) {
-//         party.shopping_list = shopping_list;
-
-//         return mappers.partyToBody(party);
-//       } else {
-//         return null;
-//       }
-//     });
-// }
 }
 
 function getPartyShopList(partyId) {
