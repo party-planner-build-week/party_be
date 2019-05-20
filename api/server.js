@@ -1,10 +1,10 @@
 // Imports
 const express = require('express');
 const helmet = require('helmet');
-const cors = require('cors
+const cors = require('cors')
 
 // Routers
-
+const authRouter = require('../auth/auth-router.js')
 
 
 
@@ -19,6 +19,6 @@ server.get('/', (req, res) => {
     res.send(`Server's working!`)
 })
 
-server.use('/')
+server.use('/api/auth', authRouter)
 
 module.exports = server;
