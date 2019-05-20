@@ -7,6 +7,7 @@ module.exports = {
     connection: {
       filename: './database/auth.db3',
     },
+    useNullAsDefault: true,
     pool: {
       afterCreate: (conn, done) => {
         conn.run('PRAGMA foreign_keys = ON', done);
@@ -18,8 +19,7 @@ module.exports = {
     seeds: {
       directory: './database/seeds',
     },
-    useNullAsDefault: true
-  }
-
-
+    
+  },
+    
 };

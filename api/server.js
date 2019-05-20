@@ -5,7 +5,7 @@ const cors = require('cors')
 
 // Routers
 const authRouter = require('../auth/auth-router.js')
-
+const partyRouter = require('../parties/party-router.js')
 
 
 // Server 
@@ -20,5 +20,6 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/auth', authRouter)
+server.use('/api/auth', partyRouter)
 
 module.exports = server;
