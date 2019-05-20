@@ -13,12 +13,13 @@ exports.up = function(knex, Promise) {
 
     return knex.schema
         .createTable('user', tbl => {
-            tbl.increments();
-
             tbl
-                .string('name', 128)
-                .notNullable()
-                .unique()
+                .increments();
+
+            // tbl
+            //     .string('name', 128)
+            //     .notNullable()
+            //     .unique()
 
             tbl
                 .string('username', 128)
@@ -29,10 +30,10 @@ exports.up = function(knex, Promise) {
                 .string('password', 128)
                 .notNullable()
 
-            tbl
-                .string('email', 128)
-                .notNullable()
-                .unique()
+            // tbl
+            //     .string('email', 128)
+            //     .notNullable()
+            //     .unique()
 
         })
 
