@@ -30,9 +30,7 @@ exports.up = function(knex, Promise) {
                     .string('password', 128)
                     .notNullable()
     
-                tbl
-                    .foreign('party_id')
-                    .references('party.id')
+           
             })
     
     
@@ -86,8 +84,10 @@ exports.up = function(knex, Promise) {
                     .references('id')
                     .inTable('user')
                     .onDelete('RESTRICT')
-                    .onUpdate('CASCADE')
-            })
+                    .onUpdate('CASCADE')                 
+            
+                    
+                })
     
     
     //       CREATE TABLE `shopping_list` (
@@ -152,6 +152,8 @@ exports.up = function(knex, Promise) {
                     .inTable('party')
                     .onDelete('RESTRICT')
                     .onUpdate('CASCADE')
+
+    
             })
     
     //       CREATE TABLE `category` (

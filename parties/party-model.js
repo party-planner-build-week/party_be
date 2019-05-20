@@ -28,30 +28,34 @@ async function add(party) {
     return findById(id)
 }
 
-function findById(id) {
-    let query = db('party');
+async function findById(id) {
+    let query = await db('party').where({id}).first();
 
-  if (id) {
-    query.where('party.id', id).first();
+    let shopQuery = await db('shopping_list').where({ party_id: id })
 
-    const promises = [query, this.getProjectActions(id)]; // [ projects, actions ]
+    let todoQuery = await db('todo_list').where({ party_id: id })
+   return { ...query, todo: todoQuery, shopping_list: shopQuery }
+//   if (id) {
+//     query.where('party_id', id).first();
 
-    return Promise.all(promises).then(function(results) {
-      let [project, actions] = results;
+//     const promises = [query, this.getPartyShopList(id)]; 
 
-      if (project) {
-        project.actions = actions;
+//     return Promise.all(promises).then(function(results) {
+//       let [party, shopping_list] = results;
 
-        return mappers.projectToBody(project);
-      } else {
-        return null;
-      }
-    });
+//       if (party) {
+//         party.shopping_list = shopping_list;
+
+//         return mappers.partyToBody(party);
+//       } else {
+//         return null;
+//       }
+//     });
+// }
 }
-}
 
-function findById(id) {
+function getPartyShopList(partyId) {
     return db('party')
-        .where('party_id', partyId)
-        .then(parties => parties.map(party => mappers.actionToBody(party)))
+        .where('party.id', partyId)
+        .then(parties => parties.map(party => mappers.shopListToBody(party)))
 }
