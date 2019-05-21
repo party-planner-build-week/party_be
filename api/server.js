@@ -6,6 +6,9 @@ const cors = require('cors')
 // Routers
 const authRouter = require('../auth/auth-router.js')
 const partyRouter = require('../parties/party-router.js')
+const todoRouter = require('../todo/todo-router.js')
+const shoppingRouter = require('../shopping/shopping-router.js')
+
 
 // Middleware
 const isLoggedIn = require('../auth/restricted-middleware.js')
@@ -24,6 +27,8 @@ server.get('/', (req, res) => {
 
 // isLoggedIn,
 server.use('/api',  partyRouter)
+server.use('/api/parties/todo', todoRouter)
+server.use('/api/parties/shopping', shoppingRouter)
 server.use('/api/auth', authRouter)
 
 module.exports = server;

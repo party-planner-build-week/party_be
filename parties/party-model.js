@@ -74,6 +74,11 @@ function update(id, changes) {
     .update(changes)
 }
 
+function updateTodo(id, party_id, changes) {
+  return db('todo_list')
+    .where({ id: changes.party_id })
+}
+
 // Delete
 
 function remove(id) {
