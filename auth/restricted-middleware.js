@@ -8,9 +8,10 @@ module.exports = (req, res, next) => {
     if (token) {
         jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if (err) {
-                res.status(401).json({ you: 'Access Denied'})
+                res.status(401).json({ you: 'You must be logged in to view that.'})
             } else {
                 req.decodedJwt = decodedToken;
+                console.log(decodedToken.subject)
                 next();
             }
         });

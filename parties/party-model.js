@@ -9,9 +9,12 @@ const db = knex(config.development)
 module.exports = {
     add,
     update,
-    // delete,
+    remove,
     findById,
-    getParties
+    getParties,
+    addShop,
+    addTodo
+    
 }
 
 function getParties() {
@@ -28,11 +31,29 @@ async function add(party) {
     return findById(id)
 }
 
+async function addTodo(todo) {
+    const [id] = await db('todo_list').insert(todo).where({ id: todo.party_id })
+  console.log(id)
+    return findById(id)
+}
+
+async function addShop(shop) {
+  const [id] = await db('shopping_list').insert(shop).where({ id: shop.party_id })
+
+  return findById(id)
+}
+
 function update(id, changes) {
   console.log(changes)
   return db('party')
     .where({ id })
     .update(changes)
+}
+
+function remove(id) {
+  return db('party')
+    .where({ id })
+    .del()
 }
 
 async function findById(id) {

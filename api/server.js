@@ -7,6 +7,9 @@ const cors = require('cors')
 const authRouter = require('../auth/auth-router.js')
 const partyRouter = require('../parties/party-router.js')
 
+// Middleware
+const isLoggedIn = require('../auth/restricted-middleware.js')
+
 
 // Server 
 const server = express()
@@ -19,7 +22,8 @@ server.get('/', (req, res) => {
     res.send(`Server's working!`)
 })
 
-server.use('/api', partyRouter)
+// isLoggedIn,
+server.use('/api',  partyRouter)
 server.use('/api/auth', authRouter)
 
 module.exports = server;
