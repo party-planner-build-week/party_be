@@ -8,6 +8,8 @@ const knex = require('knex')
 const config = require('../knexfile.js')
 const db = knex(config.development)
 
+// Edit
+
 router.put('/parties/todo/:id', async (req, res) => {
 
     try {
@@ -18,6 +20,9 @@ router.put('/parties/todo/:id', async (req, res) => {
         })
     }
 })
+
+// Delete
+
 router.delete('/parties/:param1/todo/:param2', async (req, res) => {
 
     try {

@@ -130,13 +130,6 @@ router.delete('/parties/:id', async (req, res) => {
 
 
 
-router.delete('/parties/:param1/shopping/:param2', async (req, res) => {
-
-    try {
-
-    } catch (error) {
-        
-    }
-})
+ 
 
 module.exports = router;
