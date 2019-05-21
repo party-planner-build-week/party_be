@@ -15,15 +15,37 @@ module.exports = {
     addShop,
     addTodo
     
-}
+  }
+  
+// Find
 
 function getParties() {
     return db('party')
-}
-
-function findBy(filter) {
+  }
+  
+  function findBy(filter) {
     return db('party').where(filter)
-}
+  }
+  
+  async function findById(id) {
+      let query = await db('party').where({id}).first();
+  
+      let shopQuery = await db('shopping_list').where({ party_id: id })
+  
+      let todoQuery = await db('todo_list').where({ party_id: id })
+  
+      
+     return { ...query, todo: todoQuery, shopping_list: shopQuery }
+  
+  }
+  
+  function getPartyShopList(partyId) {
+      return db('party')
+          .where('party.id', partyId)
+          .then(parties => parties.map(party => mappers.shopListToBody(party)))
+  }
+
+// Add
 
 async function add(party) {
     const [id] = await db('party').insert(party)
@@ -43,6 +65,8 @@ async function addShop(shop) {
   return findById(id)
 }
 
+// Edit
+
 function update(id, changes) {
   console.log(changes)
   return db('party')
@@ -50,26 +74,10 @@ function update(id, changes) {
     .update(changes)
 }
 
+// Delete
+
 function remove(id) {
   return db('party')
     .where({ id })
     .del()
-}
-
-async function findById(id) {
-    let query = await db('party').where({id}).first();
-
-    let shopQuery = await db('shopping_list').where({ party_id: id })
-
-    let todoQuery = await db('todo_list').where({ party_id: id })
-
-    
-   return { ...query, todo: todoQuery, shopping_list: shopQuery }
-
-}
-
-function getPartyShopList(partyId) {
-    return db('party')
-        .where('party.id', partyId)
-        .then(parties => parties.map(party => mappers.shopListToBody(party)))
 }

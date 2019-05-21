@@ -103,6 +103,17 @@ router.put('/parties/:id', async (req, res) => {
     }
 })
 
+router.put('/parties/:param1/todo/:param2', async (req, res) => {
+
+    try {
+
+    } catch (error) {
+        res.status(500).json({
+            message: `Error updating that todo list`
+        })
+    }
+})
+
 
 
 // Delete Requests
@@ -123,6 +134,24 @@ router.delete('/parties/:id', async (req, res) => {
         res.status(500).json({
             message: `Error removing the party.`
         })
+    }
+})
+
+router.delete('/parties/:param1/todo/:param2', async (req, res) => {
+
+    try {
+
+    } catch (error) {
+
+    }
+})
+
+router.delete('/parties/:param1/shopping/:param2', async (req, res) => {
+
+    try {
+
+    } catch (error) {
+        
     }
 })
 
