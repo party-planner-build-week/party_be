@@ -13,14 +13,23 @@ module.exports = {
     findById,
     getParties,
     addShop,
-    addTodo
+    addTodo, 
+    findByUsers
     
   }
   
 // Find
 
-function getParties() {
+async function getParties() {
     return db('party')
+    // let query = await db('party')
+    // console.log(query)
+    //   let shopQuery = await db('shopping_list').where({ party_id: query.id })
+  
+    //   let todoQuery = await db('todo_list').where({ party_id: query.id })
+  
+      
+    //  return { ...query, todo: todoQuery, shopping_list: shopQuery }
   }
   
   function findBy(filter) {
@@ -39,6 +48,33 @@ function getParties() {
   
   }
   
+  async function findByUsers(userId) {
+    let query = await db('user').where({ id: userId })
+
+    let partyQuery = await db('party').where({ user_id: userId })
+
+// let partyMap = partyQuery.map(eachParty => {
+//   // console.log(eachParty.id)
+//   return eachParty.id
+// })
+    
+//     let shopQuery = await db('shopping_list').where({ party_id : partyQuery.map(eachParty => {
+//       console.log(eachParty.id)
+//       return eachParty.id
+//     }) })
+    
+//     let todoQuery = await db('todo_list').where({ party_id: partyMap })
+
+//     let partyChildren = { ...partyQuery, todo_list: todoQuery, shopping_list: shopQuery}
+
+    
+    return { ...query, party: partyQuery
+    }
+    // shopping_list: shopQuery, todo_list: todoQuery
+
+  }
+
+
   function getPartyShopList(partyId) {
       return db('party')
           .where('party.id', partyId)

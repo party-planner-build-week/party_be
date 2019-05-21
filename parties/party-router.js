@@ -62,6 +62,7 @@ router.get('/', async (req, res) => {
         const todo = await db('todo_list')
         res.status(200).json(parties)
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: `Couldn't retrieve the parties.`
         })
@@ -80,6 +81,18 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
+router.get('/:id/yours', async (req, res) => {
+    try {
+        const parties = await Parties.findByUsers(req.params.id)
+        res.status(200).json(parties)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({
+            message: `Couldn't find that party.`
+        })
+    }
+})
 
 // Put Requests
 // works
