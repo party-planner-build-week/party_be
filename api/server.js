@@ -26,7 +26,7 @@ server.get('/', (req, res) => {
 })
 
 // isLoggedIn,
-server.use('/api',  partyRouter)
+server.use('/api/parties',  partyRouter)
 server.use('/api/parties/todo', todoRouter)
 server.use('/api/parties/shopping', shoppingRouter)
 server.use('/api/auth', authRouter)

@@ -11,7 +11,7 @@ const db = knex(config.development)
 
 // Post Requests
 
-router.post('/parties', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const parties = await Parties.add(req.body)
         res.status(200).json(parties)
@@ -22,7 +22,7 @@ router.post('/parties', async (req, res) => {
     }
 })
 
-router.post('/parties/:id/todo', async (req, res) => {
+router.post('/:id/todo', async (req, res) => {
     const todoInfo = { ...req.body, party_id: req.params.id }
 
     try {
@@ -37,7 +37,7 @@ router.post('/parties/:id/todo', async (req, res) => {
     }
 })
 
-router.post('/parties/:id/shopping', async (req, res) => {
+router.post('/:id/shopping', async (req, res) => {
     const shoppingInfo = { ...req.body, party_id: req.params.id}
 
     try {
@@ -51,8 +51,8 @@ router.post('/parties/:id/shopping', async (req, res) => {
 })
 
 // Get Requests
-
-router.get('/parties', async (req, res) => {
+// works
+router.get('/', async (req, res) => {
     try {
         const parties = await Parties.getParties()
         const shopping = await db('shopping_list')
@@ -66,7 +66,7 @@ router.get('/parties', async (req, res) => {
 })
 
 
-router.get('/parties/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const parties = await Parties.findById(req.params.id)
         res.status(200).json(parties)
@@ -79,8 +79,8 @@ router.get('/parties/:id', async (req, res) => {
 
 
 // Put Requests
-
-router.put('/parties/:id', async (req, res) => {
+// works
+router.put('/:id', async (req, res) => {
     try {
 
             const party = await Parties.update(req.params.id, req.body)
@@ -109,7 +109,7 @@ router.put('/parties/:id', async (req, res) => {
 
 // Delete Requests
 
-router.delete('/parties/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const party = await Parties.remove(req.params.id);
         if (party > 0) {
