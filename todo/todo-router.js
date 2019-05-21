@@ -16,7 +16,7 @@ router.put('/:id', async (req, res) => {
 
         const todo = await Todo.update(req.params.id, req.body)
 
-        if (shopping) {
+        if (todo) {
             res.status(200).json(todo)
         } else {
             res.status(404).json({
@@ -24,6 +24,7 @@ router.put('/:id', async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: `Error updating that todo list`
         })
@@ -34,7 +35,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const todo = await Shopping.remove(req.params.id)
+        const todo = await Todo.remove(req.params.id)
 
         if (todo > 0) {
             res.status(200).json({
@@ -47,6 +48,7 @@ router.delete('/:id', async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: `Error removing the todo list.`
         })

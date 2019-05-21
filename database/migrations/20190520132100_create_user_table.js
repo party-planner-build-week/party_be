@@ -119,7 +119,7 @@ exports.up = function(knex, Promise) {
                     .notNullable()
                     .references('id')
                     .inTable('party')
-                    .onDelete('RESTRICT')
+                    .onDelete('CASCADE')
                     .onUpdate('CASCADE')
             })
     
@@ -150,7 +150,7 @@ exports.up = function(knex, Promise) {
                     .notNullable()
                     .references('id')
                     .inTable('party')
-                    .onDelete('RESTRICT')
+                    .onDelete('CASCADE')
                     .onUpdate('CASCADE')
 
     
@@ -176,7 +176,7 @@ exports.up = function(knex, Promise) {
                     .notNullable()
                     .references('id')
                     .inTable('todo_list')
-                    .onDelete('RESTRICT')
+                    .onDelete('CASCADE')
                     .onUpdate('CASCADE')
                 })
     
@@ -204,11 +204,11 @@ exports.up = function(knex, Promise) {
     
     exports.down = function(knex, Promise) {
         return knex.schema
-            .dropTableIfExists('user')
-            .dropTableIfExists('party')
-            .dropTableIfExists('shopping_list')
-            .dropTableIfExists('todo_list')
-            .dropTableIfExists('category')
+        .dropTableIfExists('category')
+        .dropTableIfExists('shopping_list')
+        .dropTableIfExists('todo_list')
+        .dropTableIfExists('party')
+        .dropTableIfExists('user')
             
     };
     

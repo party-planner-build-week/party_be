@@ -10,18 +10,20 @@ const db = knex(config.development)
 
 
 // Post Requests
-
+// works
 router.post('/', async (req, res) => {
     try {
         const parties = await Parties.add(req.body)
         res.status(200).json(parties)
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: `Couldn't add that party.`
         })
     }
 })
 
+// works
 router.post('/:id/todo', async (req, res) => {
     const todoInfo = { ...req.body, party_id: req.params.id }
 
@@ -37,6 +39,7 @@ router.post('/:id/todo', async (req, res) => {
     }
 })
 
+// works
 router.post('/:id/shopping', async (req, res) => {
     const shoppingInfo = { ...req.body, party_id: req.params.id}
 
@@ -108,7 +111,7 @@ router.put('/:id', async (req, res) => {
 
 
 // Delete Requests
-
+// works
 router.delete('/:id', async (req, res) => {
     try {
         const party = await Parties.remove(req.params.id);
@@ -122,6 +125,7 @@ router.delete('/:id', async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: `Error removing the party.`
         })
