@@ -17,9 +17,18 @@ const isLoggedIn = require('../auth/restricted-middleware.js')
 // Server 
 const server = express()
 
+
+const corsOptions = {
+    credentials: true,
+    origin: process.env.BASEURL
+}
+
+
 server.use(helmet())
 server.use(express.json())
-server.use(cors())
+server.use(cors(
+    corsOptions
+))
 
 server.get('/', (req, res) => {
     res.send(`Server's working!`)
