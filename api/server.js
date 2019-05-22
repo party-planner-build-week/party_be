@@ -25,10 +25,10 @@ server.get('/', (req, res) => {
     res.send(`Server's working!`)
 })
 
-// isLoggedIn,
-server.use('/api/parties',  partyRouter)
+// Routes
+server.use('/api/parties', partyRouter)
 server.use('/api/parties/todo', todoRouter)
-server.use('/api/parties/shopping', shoppingRouter)
+server.use('/api/parties/shopping', hoppingRouter)
 server.use('/api/auth', authRouter)
 
 module.exports = server;
