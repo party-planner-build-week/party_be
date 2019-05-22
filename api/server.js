@@ -37,7 +37,7 @@ server.get('/', (req, res) => {
 // Routes
 server.use('/api/parties', partyRouter)
 server.use('/api/parties/todo', todoRouter)
-server.use('/api/parties/shopping', hoppingRouter)
+server.use('/api/parties/shopping', shoppingRouter)
 server.use('/api/auth', authRouter)
 
 module.exports = server;
