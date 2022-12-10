@@ -25,7 +25,7 @@
     "cross-env": "^5.2.0",
     "crossenv": "^0.0.2-security",
     "dotenv": "^8.0.0",
-    "express": "^4.17.0",
+    "express": "^4.17.3",
     "helmet": "^3.18.0",
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
